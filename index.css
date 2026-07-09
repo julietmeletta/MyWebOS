@@ -1,0 +1,45 @@
+.top-bar {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: rgb(73, 126, 241);
+    padding: 10px 0;
+    h1 {
+        margin: 0;
+        font-size: 2.5rem;
+    }
+}
+
+.welcome {
+    border: solid;
+    border-color: rgb(137, 37, 37);
+    border-width: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: black;
+    width: fit-content;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    h1 {
+     color: rgb(137, 37, 37);
+     font-family: "Tourney", sans-serif;
+     font-optical-sizing: auto;
+     font-weight: 500;
+     font-style: normal;
+     font-variation-settings:
+    "wdth" 100;
+    }
+}
+
+body {
+    background-color: black;
+    background-image: url(./wallpaper.jpg);
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    height: 95vh
+}
