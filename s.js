@@ -19,6 +19,15 @@ welcomeScreenOpen.addEventListener("click", function() {
   openWindow(welcomeScreen);
 });
 
+var quotesScreen = document.querySelector("#quotes");
+var quotesScreenOpen = document.querySelector("#quotes-open");
+var quotesScreenClose = document.querySelector("#quotes-close");
+quotesScreenClose.addEventListener("click", function() {
+  closeWindow(quotesScreen);
+});
+quotesScreenOpen.addEventListener("click", function() {
+  openWindow(quotesScreen);
+});
 
 function closeWindow(element) {
     element.style.display = "none";
@@ -33,6 +42,7 @@ function openWindow(element) {
 
 // Make the DIV element draggable:
 dragElement(document.getElementById("welcome"));
+dragElement(document.getElementById("quotes"));
 
 // Step 1: Define a function called `dragElement` that makes an HTML element draggable.
 function dragElement(element) {
@@ -84,4 +94,27 @@ function dragElement(element) {
     document.onmouseup = null;
     document.onmousemove = null;
   }
+}
+
+var quoteArray = ["\"We are Groot\"<br>-Groot","\"I can do this all day\"<br>-Captain America","\"I am Iron Man\"<br>-Iron Man",
+    "\"Why is Gamora?\"<br>-Drax", "\"Avengers Assemble\"<br>-Captain America","\"I'm always angry\"<br>-Bruce Banner","\"I love you in every universe\"<br>-Doctor Strange",
+    "\"Wakanda Forever\"<br>-Black Panther","\"We're the guardians of the galaxy\"<br>-Star Lord","\"A thing isn't beautiful because it lasts\"<br>-Vision",
+    "\"What is grief, if not love preservering?\"<br>-Vision","\"I have nothing to prove to you\"<br>-Captain Marvel","\"With great power there must also come great responsibility\"<br>-Uncle Ben",
+    "\"You didn't see that coming\"<br>-Pietro Maximoff","\"Earth is closed today\"<br>-Iron Man","\"Death is what gives life meaning\"<br>-The Ancient One","\"I'm Mary Poppins, y'all!\"<br>-Yondu",
+    "\"On your left\"<br>-Captain America","\"I love you 3000\"<br>-Morgan Stark","\"I am burdened with glorious purpose\"<br>-Loki","\"Higher, further, faster\"<br>-Captain Marvel",
+    "\"Just becasue something works doesn't mean it can't be improved\"<br>-Shuri","\"Nothing goes over my head. My reflexes are too fast.\"<br>-Drax"];
+var quoteIndex = parseInt(Math.random()*23);
+document.getElementById("quote").innerHTML = quoteArray[quoteIndex];
+var nextQuote = document.querySelector("#next-quote");
+nextQuote.addEventListener("click", function() {
+  goToNextQuote();
+});
+function goToNextQuote() {
+    if (quoteIndex<22) {
+        document.getElementById("quote").innerHTML = quoteArray[quoteIndex+1];
+        quoteIndex++;
+    } else {
+        document.getElementById("quote").innerHTML = quoteArray[0];
+        quoteIndex = 0;
+    }
 }
