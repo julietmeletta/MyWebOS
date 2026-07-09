@@ -8,28 +8,24 @@
         <link rel = "stylesheet" type = "text/css" href = "index.css"/>
     </head>
     <body>
-        <div class="top-bar">
+        <div id="top-bar">
         <h1>Marvel WebOS</h1>
         <h1 id="dateElement">Date</h1>
         <h1 id="timeElement">Time</h1>
         </div>
-        <div class="welcome">
+        <div id="desktopApps">
+        <div id="welcome-open">Welcome</div>
+        </div>
+        <div id="welcome">
+        <div id="welcome-header">
+            <div id="welcome-close"></div>
+        </div>
         <h1>Marvel WebOS</h1>
-        <video width=482 height=200 autoplay loop muted>
+        <video id="mov" autoplay loop muted>
          <source src="marvelIntro.mp4" type="video/mp4">
          Your browser does not support the video tag.
         </video>
         </div>
-        <script>
-        function updateTime() {
-        var date = new Date().toLocaleString().substring(0,8);
-        var time = new Date().toLocaleString().substring(10);
-        var dateText = document.querySelector("#dateElement")
-        var timeText = document.querySelector("#timeElement");
-        dateText.innerHTML = date;
-        timeText.innerHTML = time;
-        }
-        setInterval(updateTime, 1000)
-        </script>
+        <script src="s.js"></script>
     </body>
 </html>
