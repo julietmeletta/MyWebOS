@@ -1,8 +1,4 @@
 # MyWebOS
 
 My first ever WebOS!
-
-- no ai used
-- has a welcome screen
-- has a quote generator
-- more to come!
+This is my second stardance project, and after making my first one I wanted to make a project that was more an expression of creativity rather than learning how to do a whole bunch of new stuff. With this, I was able to spend time making something that was fun to create, and I did learn some JS along the way.There was no AI in this project, just my code. Right now, there is just a welcome tab and a quote generator. The welcome tab plays the marvel intro, and the quote generator rotates through >20 of the best marvel quotes. Both tabs are openable, closable, and draggable. 
