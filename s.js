@@ -29,6 +29,28 @@ quotesScreenOpen.addEventListener("click", function() {
   openWindow(quotesScreen);
 });
 
+var terminalScreen = document.querySelector("#terminal");
+var terminalScreenOpen = document.querySelector("#terminal-open");
+var terminalScreenClose = document.querySelector("#terminal-close");
+terminalScreenClose.addEventListener("click", function() {
+  closeWindow(terminalScreen);
+});
+terminalScreenOpen.addEventListener("click", function() {
+  openWindow(terminalScreen);
+  input.focus();
+});
+
+var calcScreen = document.querySelector("#calc");
+var calcScreenOpen = document.querySelector("#calc-open");
+var calcScreenClose = document.querySelector("#calc-close");
+calcScreenClose.addEventListener("click", function() {
+  closeWindow(calcScreen);
+});
+calcScreenOpen.addEventListener("click", function() {
+  openWindow(calcScreen);
+  input.focus();
+});
+
 function closeWindow(element) {
     element.style.display = "none";
 }
@@ -39,10 +61,11 @@ function openWindow(element) {
     element.style.zIndex = biggestIndex;
 }
 
-
 // Make the DIV element draggable:
 dragElement(document.getElementById("welcome"));
 dragElement(document.getElementById("quotes"));
+dragElement(document.getElementById("terminal"));
+dragElement(document.getElementById("calc"));
 
 // Step 1: Define a function called `dragElement` that makes an HTML element draggable.
 function dragElement(element) {
@@ -117,4 +140,128 @@ function goToNextQuote() {
         document.getElementById("quote").innerHTML = quoteArray[0];
         quoteIndex = 0;
     }
+}
+
+var input = document.querySelector("#in");
+input.focus();
+input.addEventListener("keydown", function(event) {
+  if (event.key === "Enter") {
+    var inputStr = input.value;
+    var output = "";
+    var log = document.querySelector("#log");
+    if (inputStr === "help") {
+        output = "clear => clear command log<br>close 'app' => closes specified app<br>date => returns current date"+
+            "<br>help => see command list<br>open 'app' => opens specified app<br>next quote => goes to next quote in Quote Generator"+
+            "<br>time => returns current time";
+    } else if (inputStr === "clear") {
+        log.innerHTML = "";
+        output = "Done."
+    } else if (inputStr === "time") {
+        output = new Date().toLocaleString().substring(10);
+    } else if (inputStr === "date") {
+        output = new Date().toLocaleString().substring(0,8);
+    } else if (inputStr.substring(0,4) === "open") {
+        if (inputStr.substring(5) === "welcome") {
+            openWindow(welcomeScreen);
+            output = "Done.";
+        } else if (inputStr.substring(5) === "quote generator") {
+            openWindow(quotesScreen);
+            output = "Done.";
+        } else if (inputStr.substring(5) === "terminal") {
+            openWindow(terminalScreen);
+            output = "Done.";
+        } else if (inputStr.substring(5) === "calculator") {
+            openWindow(calcScreen);
+            output = "Done.";
+        } else {
+            output = "App not found."
+        }
+    } else if (inputStr.substring(0,5) === "close") {
+        if (inputStr.substring(6) === "welcome") {
+            closeWindow(welcomeScreen);
+            output = "Done.";
+        } else if (inputStr.substring(6) === "quote generator") {
+            closeWindow(quotesScreen);
+            output = "Done.";
+        } else if (inputStr.substring(6) === "terminal") {
+            closeWindow(terminalScreen);
+            output = "Done.";
+        } else if (inputStr.substring(6) === "calculator") {
+            closeWindow(calcScreen);
+            output = "Done.";
+        } else {
+            output = "App not found."
+        }
+    } else if (inputStr === "next quote") {
+        goToNextQuote();
+        output = "Done.";
+    } else {
+        output = "Command not recognized. Enter 'help' to see command list."
+    }
+    log.innerHTML += "Enter command:<br>> " + inputStr + "<br>" + output + "<br>";
+    input.value = "";
+    log.scrollTop = log.scrollHeight;
+  }
+});
+
+
+var ans = document.getElementById("result");
+ans.innerHTML = 0;
+
+var buttonDelete = document.querySelector("#delete");
+buttonDelete.addEventListener("click", function() {
+  pressedDelete();
+});
+function pressedDelete() {
+    ans.innerHTML = ans.innerHTML.substring(0,ans.innerHTML.length-1);
+    if (ans.innerHTML === "") {
+    ans.innerHTML = "0";
+}
+}
+var numberButtons = document.querySelectorAll("#buttons h2:not(#delete):not(#C):not(#\\=):not(#\\+\\/\\-)");
+numberButtons.forEach(function(btn) {
+    btn.addEventListener("click", function() {
+        if (ans.innerHTML === "0") {
+          ans.innerHTML = btn.textContent;
+        } else {
+          ans.innerHTML += btn.textContent;
+        }
+    });
+});
+var cButton = document.querySelector("#C");
+cButton.addEventListener("click", function() {
+    pressedC();
+});
+function pressedC() {
+    ans.innerHTML = 0;
+}
+var posnegButton = document.querySelector("#\\+\\/\\-");
+posnegButton.addEventListener("click", function() {
+    pressedPosneg();
+});
+function pressedPosneg() {
+    if (ans.innerHTML > 0) {
+        ans.innerHTML = "-" + ans.innerHTML;
+    } else if (ans.innerHTML < 0) {
+        ans.innerHTML = ans.innerHTML.substring(1);
+    }
+}
+var equalsButton = document.querySelector("#\\=");
+equalsButton.addEventListener("click", function() {
+    pressedEquals();
+});
+function pressedEquals() {
+    var expression = ans.innerHTML;
+    expression = expression.replaceAll("X", "*");
+    expression = expression.replaceAll("÷", "/");
+    expression = expression.replaceAll("%", "/100");
+    try {
+        var result = eval(expression);
+        ans.innerHTML = result;
+    } catch (error) {
+        ans.innerHTML = "Error";
+    }
+}
+if (ans.innerHTML === "") {
+    ans.innerHTML = "0";
 }
