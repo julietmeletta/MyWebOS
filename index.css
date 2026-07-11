@@ -285,7 +285,7 @@ html, body {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-image: url("wallpaper1.JPG");
+    background-image: url("wallpaper1.jpg");
     background-color: black;
     background-repeat: no-repeat;
     background-size: 60%;
@@ -301,7 +301,7 @@ html, body {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-image: url("wallpaper2.JPG");
+    background-image: url("wallpaper2.jpg");
     background-color: black;
     background-repeat: no-repeat;
     background-size: 60%;
@@ -317,7 +317,7 @@ html, body {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-image: url("wallpaper3.JPG");
+    background-image: url("wallpaper3.jpg");
     background-color: black;
     background-repeat: no-repeat;
     background-size: 100%;
