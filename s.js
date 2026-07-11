@@ -152,7 +152,7 @@ input.addEventListener("keydown", function(event) {
     if (inputStr === "help") {
         output = "clear => clear command log<br>close 'app' => closes specified app<br>date => returns current date"+
             "<br>help => see command list<br>open 'app' => opens specified app<br>next quote => goes to next quote in Quote Generator"+
-            "<br>time => returns current time";
+            "<br>time => returns current time<br>wallpaper '#1-4' => sets wallpaper as specified option";
     } else if (inputStr === "clear") {
         log.innerHTML = "";
         output = "Done."
@@ -195,6 +195,34 @@ input.addEventListener("keydown", function(event) {
     } else if (inputStr === "next quote") {
         goToNextQuote();
         output = "Done.";
+    } else if (inputStr.substring(0,9) === "wallpaper") {
+        if (inputStr.substring(10) === "1") {
+            document.querySelector("#wallpaper1").style.display = "flex";
+            document.querySelector("#wallpaper2").style.display = "none";
+            document.querySelector("#wallpaper3").style.display = "none";
+            document.querySelector("#wallpaper4").style.display = "none";
+            output = "Done.";
+        } else if (inputStr.substring(10) === "2") {
+            document.querySelector("#wallpaper1").style.display = "none";
+            document.querySelector("#wallpaper2").style.display = "flex";
+            document.querySelector("#wallpaper3").style.display = "none";
+            document.querySelector("#wallpaper4").style.display = "none";
+            output = "Done.";
+        } else if (inputStr.substring(10) === "3") {
+            document.querySelector("#wallpaper1").style.display = "none";
+            document.querySelector("#wallpaper2").style.display = "none";
+            document.querySelector("#wallpaper3").style.display = "flex";
+            document.querySelector("#wallpaper4").style.display = "none";
+            output = "Done.";
+        } else if (inputStr.substring(10) === "4") {
+            document.querySelector("#wallpaper1").style.display = "none";
+            document.querySelector("#wallpaper2").style.display = "none";
+            document.querySelector("#wallpaper3").style.display = "none";
+            document.querySelector("#wallpaper4").style.display = "flex";
+            output = "Done.";
+        } else {
+            output = "Wallpaper choice not found. Please pick number 1-4."
+        }
     } else {
         output = "Command not recognized. Enter 'help' to see command list."
     }
