@@ -1,5 +1,5 @@
 function updateTime() {
-    var date = new Date().toLocaleString().substring(0,8);
+    var date = new Date().toLocaleString().substring(0,9);
     var time = new Date().toLocaleString().substring(10);
     var dateText = document.querySelector("#dateElement")
     var timeText = document.querySelector("#timeElement");
@@ -159,7 +159,7 @@ input.addEventListener("keydown", function(event) {
     } else if (inputStr === "time") {
         output = new Date().toLocaleString().substring(10);
     } else if (inputStr === "date") {
-        output = new Date().toLocaleString().substring(0,8);
+        output = new Date().toLocaleString().substring(0,9);
     } else if (inputStr.substring(0,4) === "open") {
         if (inputStr.substring(5) === "welcome") {
             openWindow(welcomeScreen);
